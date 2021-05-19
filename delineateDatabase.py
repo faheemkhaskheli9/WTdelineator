@@ -45,7 +45,7 @@ for patient in range(1,len(annot)):
         rec = annot[patient][measurement] # Find the name of the record
         if rec != '': # Check that the record exists
             try:
-                s, att = wfdb.srdsamp(rec.zfill(4),pbdir=dbase) # Read from Physionet
+                s, att = wfdb.rdsamp(rec.zfill(4),pn_dir=dbase) # Read from Physionet
                 # Calculate augmented limb leads and append them to the signals
                 aVR, aVL, aVF = ecg.augmentedLimbs(s[:,-3], s[:,-2])
                 s = np.concatenate((s, aVR, aVL, aVF), axis=1) 
@@ -75,7 +75,7 @@ for patient in range(1,len(annot)):
         rec = annot[patient][measurement] # Find the name of the record
         if rec != '': # Check that the record exists
             try:
-                s, att = wfdb.srdsamp(rec.zfill(4),pbdir=dbase) # Read from Physionet
+                s, att = wfdb.rdsamp(rec.zfill(4),pn_dir=dbase) # Read from Physionet
                 
                 # Read the annotations
                 a1,a2,_ = annot[patient][measurement+1].split(';')
@@ -117,7 +117,7 @@ for patient in range(1,len(annot)):
         rec = annot[patient][measurement] # Find the name of the record
         if rec != '': # Check that the record exists
             try:
-                s, att = wfdb.srdsamp(rec.zfill(4),pbdir=dbase) # Read from Physionet
+                s, att = wfdb.rdsamp(rec.zfill(4),pn_dir=dbase) # Read from Physionet
                 # Calculate augmented limb leads and append them to the signals
                 aVR, aVL, aVF = ecg.augmentedLimbs(s[:,-3], s[:,-2])
                 s = np.concatenate((s, aVR, aVL, aVF), axis=1) 
@@ -144,4 +144,4 @@ for patient in range(1,len(annot)):
 
 # Close file
 outFile.close()
-        
+       
